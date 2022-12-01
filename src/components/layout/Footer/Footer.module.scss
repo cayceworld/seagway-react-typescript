@@ -1,0 +1,47 @@
+@import '../../../styles/global';
+@import '../../../styles/variables';
+
+.Footer {
+  margin-top: 50px;
+  background-color: $black;
+}
+
+.Footer__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  gap: 20px;
+
+  img {
+    max-height: 50px;
+    width: 100%;
+    filter: invert(21%) sepia(9%) saturate(23%) hue-rotate(103deg) brightness(102%) contrast(89%);
+
+  }
+
+  .Footer__logo{
+    z-index: 1;
+  }
+}
+
+.Footer__text {
+  font-size: 13px;
+  color: $white;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+
+}
+
+@include for-tablet {
+
+  .Footer__text {
+    flex-direction: column;
+    gap: 5px;
+
+    div {
+      width: 100%;
+    }
+  }
+}

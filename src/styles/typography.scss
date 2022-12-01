@@ -1,0 +1,56 @@
+@import './global.scss';
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+$maxWidth: 1100;
+
+@mixin adaptive-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $maxWidth: $maxWidth - 320;
+  font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+}
+
+
+%textTitle {
+  @include adaptive-font(50, 25);
+}
+
+%textSubtitle {
+  @include adaptive-font(18, 12);
+}
+
+%textBasic {
+  @include adaptive-font(16, 14);
+}
+
+%textSmall {
+  @include adaptive-font(14, 12);
+}
+
+
+h1 {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #323941;
+  line-height: 80%;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+
+@media (min-width: 1100px) {
+
+  %textSubtitle {
+    font-size: 50px;
+  }
+
+
+}
+
+@include for-tablet {
+  h1 {
+    font-size: 34px;
+  }
+}

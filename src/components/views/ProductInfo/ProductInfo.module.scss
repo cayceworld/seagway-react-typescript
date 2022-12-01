@@ -1,0 +1,143 @@
+@import '../../../styles/global';
+@import '../../../styles/variables';
+
+.ProductInfo {
+  margin: 50px 0;
+}
+
+.ProductInfo__titles {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  color: #999999;
+
+
+  .ProductInfo__item {
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    gap: 19px;
+    align-items: center;
+
+  }
+
+  .ProductInfo__item_selected {
+    background-color: $blue;
+    color: $white;
+
+    img {
+      filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(135deg) brightness(103%) contrast(102%);
+    }
+  }
+}
+
+
+.ProductInfo__content {
+  background: #f1f1f1;
+  padding: 12px;
+  color: #323941;
+  display: flex;
+  gap: 80px;
+  justify-content: space-between;
+  flex: 1 1 70%;
+
+
+
+
+  .ProductInfo__box {
+    flex: 1 1 50%;
+
+    .ProductInfo__subtitle {
+      font-size: 25px;
+      font-weight: 700;
+      text-transform: uppercase;
+      max-width: 370px;
+      margin-bottom: 10px;
+    }
+
+    .ProductInfo__text {
+      font-size: 18px;
+    }
+
+    .ProductInfo__ico {
+      height: 130px;
+      width: 120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $white;
+      clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+
+
+
+      >div {
+        font-weight: 700;
+        color: $white;
+        background-color: $blue;
+        height: 110px;
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+
+        div {
+          font-size: 62px;
+          line-height: 80%;
+        }
+      }
+    }
+  }
+
+  >div:last-child.ProductInfo__box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@include for-tablet {
+  .ProductInfo__titles {
+    .ProductInfo__item {
+      justify-content: center;
+      width: 100%;
+
+      div {
+        display: none;
+      }
+    }
+  }
+
+  .ProductInfo__content {
+    flex-wrap: wrap-reverse;
+    gap: 10px;
+    text-align: center;
+    justify-content: center;
+    min-height: 400px;
+
+    .ProductInfo__box {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .ProductInfo {
+    background: rgba(153, 153, 153, 0.08);
+    .ProductInfo__content {
+      background: none;
+    }
+    .ProductInfo__titles {
+      background: #FFFFFF;;
+    }
+  }
+
+
+}

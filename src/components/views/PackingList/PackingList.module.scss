@@ -1,0 +1,73 @@
+@import '../../../styles/global.scss';
+@import '../../../styles/variables.scss';
+@import '../../../styles/typography.scss';
+
+
+.PackingList{
+  padding: 40px 0; 
+}
+
+.PackingList__title {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #323941;
+  line-height: 80%;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+
+
+.PackingList__wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 46px;
+
+
+
+  .PackingList__video {
+    flex: 0 1 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+
+
+  }
+
+  .PackingList__image {
+    display: flex;
+    align-items: center;
+    flex: 0 1 40%;
+
+    div {
+      border-radius: 50%;
+      background-color: $blue;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+.PackingList__wrapper_noVideo {
+  justify-content: center;
+}
+
+@include for-tablet {
+  .PackingList__wrapper {
+    flex-wrap: wrap;
+
+    .PackingList__image {
+      flex: 0 1 500%;
+      justify-content: center;
+    }
+
+    .PackingList__video {
+      flex: 0 1 100%;
+
+      h1 {
+        font-size: 34px;
+      }
+    }
+  }
+}

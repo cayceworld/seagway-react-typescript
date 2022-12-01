@@ -1,0 +1,119 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/global.scss';
+
+.navbar {
+  position: sticky;
+  top: 0px;
+  background-color: $navBarColor;
+  border: 1px solid $primary;
+  z-index: 15;
+
+  /* disable text selection for navbar */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* ----------------- */
+
+  .navbar__wrapper {
+    width: 100%;
+    display: flex;
+    z-index: 12;
+    margin: 12px auto;
+    position: relative;
+  }
+
+  .Navigation {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .MobileNavigation {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 100%;
+    align-items: center;
+    justify-content: space-between;
+
+
+    .MobileNavigation__burger {
+      cursor: pointer;
+      z-index: 15;
+      width: 40px;
+      color: $burgerMenuIcoColor;
+    }
+    .MobileNavigation__icons{
+      z-index: 15;
+    }
+  }
+
+  .navlinks {
+    display: flex;
+    gap: 24px;
+
+    .navlinks__item {
+      a {
+        color: $navLinkColor;
+      }
+    }
+
+    .navlinks__link {
+      color: $burgerLinkColor;
+      font-weight: 400;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      line-height: 22px;
+      text-transform: uppercase;
+    }
+
+  }
+
+}
+
+@include for-laptop-l {
+  .navbar {
+    .navlinks {
+      .navlinks__link {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@include for-tablet {
+  .navbar {
+    position: sticky;
+    background-color: $burgerNavBarColor;
+    border: none;
+
+
+    .navlinks {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      background: $burgerBackground;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+
+      .navlinks__item {
+        a {
+          color: $burgerLinksColor;
+        }
+      }
+    }
+  }
+}
+@include for-mobile-l{
+  .MobileNavigation__logo{
+    display: none;
+    border: 1px solid #000;
+  }
+}

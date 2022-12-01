@@ -1,0 +1,23 @@
+@import '../../../styles/global'; 
+@import '../../../styles/button.scss';
+
+
+.Info__content{
+  color: #323941;
+  h3{
+    font-size: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 20px 0 10px 0;
+  }
+  h5{
+    font-size: 18px;
+    margin: 10px 0 5px 0;
+  }
+  p{
+    font-size: 14px;
+  }
+  a{
+    color: $blue;
+  }
+}

@@ -1,0 +1,74 @@
+@mixin for-mobile-s {
+  @media (max-width: 320px) {
+    @content;
+  }
+}
+
+@mixin for-mobile-m {
+  @media (max-width: 375px) {
+    @content;
+  }
+}
+
+@mixin for-mobile-l {
+  @media (max-width: 425px) {
+    @content;
+  }
+}
+
+@mixin for-tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin for-laptop {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin for-laptop-l {
+  @media (max-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin for-4k {
+  @media (max-width: 2560px) {
+    @content;
+  }
+}
+
+.container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 45px;
+
+}
+
+
+// put footer bottom
+.root {
+  height: 100%;
+
+  .app {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .app__content {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+
+
+
+@include for-laptop {
+  .container {
+    padding: 0 20px;
+  }
+}

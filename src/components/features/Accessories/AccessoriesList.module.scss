@@ -1,0 +1,104 @@
+@import '../../../styles/global.scss';
+@import '../../../styles/variables.scss';
+@import '../../../styles/button.scss';
+
+.Accessory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex: 1 1 30%;
+  justify-content: space-between;
+
+
+
+
+  .Accessory__image {
+    background: #EEEEEE;
+    border-radius: 50%;
+    width: 133px;
+    height: 133px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    img {
+      max-height: 133px;
+      max-width: 133px;
+
+    }
+  }
+
+  .Accessory__title {
+    font-weight: 700;
+    line-height: 90%;
+    font-size: 25px;
+    color: #323941;
+
+  }
+
+  .Accessory__description {
+    font-size: 13px;
+    line-height: 119.3%;
+    color: #999999;
+  }
+
+  .Accessory__price {
+    font-size: 18px;
+    color: #323941;
+  }
+
+  .Accessory__button {
+    button {
+      padding: 15px 25px;
+    }
+  }
+}
+
+
+.DesktopAccessories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 38px;
+}
+
+.AccessoriesList {
+  margin-top: 63px;
+}
+
+@include for-tablet {
+  .Accessory {
+    height: 420px;
+
+    .Accessory__image {
+      width: 110px;
+      height: 110px;
+
+      img {
+        height: 110px;
+        width: 110px;
+
+      }
+    }
+  }
+}
+
+
+@include for-mobile-l {
+  .Accessory {
+    height: 420px;
+
+    .Accessory__button {
+      button {
+        padding: 5px 0;
+      }
+    }
+  }
+}
+
+@include for-mobile-m {
+  .Accessory {
+    height: 480px;
+  }
+}

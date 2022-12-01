@@ -1,0 +1,44 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/global.scss';
+
+
+.LogoSection__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 18px 0;
+}
+
+
+
+.LogoSection__image {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  padding: 0 65px 0 0;
+
+  .LogoSection__img img {
+    width: 100%;
+  }
+
+  .LogoSection__text {
+    h3 {
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 119.3%;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 119.3%;
+      color: $navLogoText;
+    }
+  }
+}
+
+@include for-tablet{
+  .LogoSection{
+    display: none;
+  }
+}
