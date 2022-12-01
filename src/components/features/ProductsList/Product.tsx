@@ -1,10 +1,10 @@
 import clsx from 'clsx';
 import styles from './ProductsList.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSelect, getSelectedKickscooter  } from '../../../redux/kickscooterRedux';
+import { toggleSelect, getSelectedKickscooter } from '../../../redux/kickscooterRedux';
+import { ProductType } from '../../../types/ProductType';
 
-
-const Product = props => {
+export const Product: React.FC<ProductType> = props => {
 
   const dispatch = useDispatch();
   const selectedKickscooter = useSelector(getSelectedKickscooter);
@@ -26,5 +26,3 @@ const Product = props => {
     </div>
   );
 }
-
-export default Product;

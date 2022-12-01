@@ -4,7 +4,19 @@ import { addAmount, removeAmount, removeItem } from '../../../redux/cartRedux';
 import clsx from 'clsx';
 import { BsFillTrashFill } from 'react-icons/bs';
 
-const CartProduct = props => {
+
+interface Item {
+  amount: number,
+  category: string, 
+  id:  string,
+  image: string,
+  inStock: number,
+  price: number, 
+  title: string
+}
+
+
+export const CartProduct: React.FC<Item> = props => {
 
   const item = props;
   const dispatch = useDispatch();
@@ -16,7 +28,7 @@ const CartProduct = props => {
   }
 
   const removeOne = () => {
-    if (item.amount > 1 )
+    if (item.amount > 1)
       dispatch(removeAmount({ id: item.id, amount: 1 }))
   }
 
@@ -44,5 +56,3 @@ const CartProduct = props => {
     </div>
   );
 }
-
-export default CartProduct;

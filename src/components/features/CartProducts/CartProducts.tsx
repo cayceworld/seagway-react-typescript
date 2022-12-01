@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { getCartProducts } from '../../../redux/cartRedux';
 import styles from './CartProducts.module.scss';
 import '../../../../node_modules/rc-input-number/assets/index.css';
-import CartProduct from './CartProduct';
+import {CartProduct} from './CartProduct';
 import shortid from 'shortid';
 
 

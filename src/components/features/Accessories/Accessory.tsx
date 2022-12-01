@@ -3,8 +3,10 @@ import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 import { addToCart, getCartProducts, addAmount } from '../../../redux/cartRedux';
 import { useSelector } from 'react-redux';
+import {ProductType} from '../../../types/ProductType';
 
-const Accessory = props => {
+
+export const Accessory: React.FC<ProductType> = props => {
 
   const cart = useSelector(getCartProducts);
   const accessory = props;
@@ -13,6 +15,8 @@ const Accessory = props => {
   const dispatch = useDispatch();
 
   const addProduct = () => {
+
+
 
     const addedItem = cart.find(item => item.id == accessory.id);
 
@@ -46,4 +50,3 @@ const Accessory = props => {
   );
 }
 
-export default Accessory;

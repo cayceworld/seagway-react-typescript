@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { getAllAccessories } from "../../../redux/accessoriesRedux";
 import styles from './AccessoriesList.module.scss';
-import Accessory from './Accessory';
+import {Accessory} from './Accessory';
 
 
 const DesktopAccessories = () => {

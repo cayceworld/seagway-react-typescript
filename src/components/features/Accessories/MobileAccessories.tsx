@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector } from 'react-redux';
 import { getAllAccessories } from '../../../redux/accessoriesRedux';
-import Accessory from './Accessory';
+import {Accessory} from './Accessory';
 import styles from './AccessoriesList.module.scss';
 
 const MobileAccessories = () => {
