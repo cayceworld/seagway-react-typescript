@@ -1,5 +1,5 @@
-@import '../../../styles/global.scss';
-@import '../../../styles/variables.scss';
+@import "../../../styles/global.scss";
+@import "../../../styles/variables.scss";
 
 .gift__wrapper {
   display: none;
@@ -24,7 +24,7 @@
 
 .gift__image {
   img {
-    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));
+    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
     max-height: 87px;
   }
 }

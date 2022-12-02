@@ -1,5 +1,4 @@
-import styles from './NotFound.module.scss';
-
+import styles from "./NotFound.module.scss";
 
 const NotFound = () => {
   return (
@@ -7,6 +6,6 @@ const NotFound = () => {
       <div className={styles.NotFound}> Page is not found. </div>
     </div>
   );
-}
+};
 
 export default NotFound;

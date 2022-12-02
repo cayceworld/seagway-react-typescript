@@ -1,4 +1,4 @@
-import AccessoriesList from '../../features/Accessories/AccessoriesList';
+import AccessoriesList from "../../features/Accessories/AccessoriesList";
 
 const AccessoriesPage = () => {
   return (
@@ -6,6 +6,6 @@ const AccessoriesPage = () => {
       <AccessoriesList />
     </>
   );
-}
+};
 
 export default AccessoriesPage;

@@ -1,7 +1,6 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/global.scss';
-@import '../../../styles/button.scss';
-
+@import "../../../styles/variables.scss";
+@import "../../../styles/global.scss";
+@import "../../../styles/button.scss";
 
 .navicons {
   display: flex;
@@ -41,10 +40,10 @@
 }
 
 .navicons__img {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(135deg) brightness(103%) contrast(102%);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%)
+    hue-rotate(135deg) brightness(103%) contrast(102%);
   height: 24px;
 }
-
 
 .navicons__phone {
   color: $burgerLinkColor;
@@ -58,7 +57,6 @@
 .navicons__img_phone {
   display: none;
 }
-
 
 /// cart ///
 .navicons__cartIco {
@@ -155,4 +153,3 @@
     }
   }
 }
-

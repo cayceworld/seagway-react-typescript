@@ -3,8 +3,7 @@ export interface ProductType {
   title?: string;
   price?: number;
   image?: string;
-  isSelect?: boolean,
-  inStock?: number,
+  isSelect?: boolean;
+  inStock?: number;
   description?: string;
- 
 }

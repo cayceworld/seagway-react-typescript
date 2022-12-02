@@ -1,26 +1,22 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/global.scss';
+@import "../../../styles/variables.scss";
+@import "../../../styles/global.scss";
 
-
-
-.logo__item{
+.logo__item {
   position: relative;
   flex: 33.333%;
   max-width: 100%;
 
-  img{
+  img {
     z-index: 2;
   }
 }
 
-
-
-@include for-tablet{
-  .logo__item{
+@include for-tablet {
+  .logo__item {
     z-index: 15;
     padding: 0 0 0 45px;
-    img{
-     max-height: 30px;
+    img {
+      max-height: 30px;
     }
   }
 }

@@ -1,5 +1,5 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/global.scss';
+@import "../../../styles/variables.scss";
+@import "../../../styles/global.scss";
 
 .navbar {
   position: sticky;
@@ -38,14 +38,13 @@
     align-items: center;
     justify-content: space-between;
 
-
     .MobileNavigation__burger {
       cursor: pointer;
       z-index: 15;
       width: 40px;
       color: $burgerMenuIcoColor;
     }
-    .MobileNavigation__icons{
+    .MobileNavigation__icons {
       z-index: 15;
     }
   }
@@ -68,9 +67,7 @@
       line-height: 22px;
       text-transform: uppercase;
     }
-
   }
-
 }
 
 @include for-laptop-l {
@@ -88,7 +85,6 @@
     position: sticky;
     background-color: $burgerNavBarColor;
     border: none;
-
 
     .navlinks {
       position: fixed;
@@ -111,8 +107,8 @@
     }
   }
 }
-@include for-mobile-l{
-  .MobileNavigation__logo{
+@include for-mobile-l {
+  .MobileNavigation__logo {
     display: none;
     border: 1px solid #000;
   }

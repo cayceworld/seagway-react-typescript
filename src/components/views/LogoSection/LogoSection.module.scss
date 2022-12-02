@@ -1,6 +1,5 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/global.scss';
-
+@import "../../../styles/variables.scss";
+@import "../../../styles/global.scss";
 
 .LogoSection__wrapper {
   display: flex;
@@ -8,8 +7,6 @@
   align-items: center;
   margin: 18px 0;
 }
-
-
 
 .LogoSection__image {
   display: flex;
@@ -37,8 +34,8 @@
   }
 }
 
-@include for-tablet{
-  .LogoSection{
+@include for-tablet {
+  .LogoSection {
     display: none;
   }
 }

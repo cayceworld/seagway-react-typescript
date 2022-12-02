@@ -1,5 +1,5 @@
-@import '../../../styles/variables.scss';
-@import '../../../styles/global.scss';
+@import "../../../styles/variables.scss";
+@import "../../../styles/global.scss";
 
 .DesktopProducts {
   background-color: $productsBackground;
@@ -36,24 +36,22 @@
   }
 
   .products__image {
-
     img {
-      -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));
-      filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));
+      -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+      filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
       height: 80px;
-
     }
   }
 }
 
-.products__item:hover{
+.products__item:hover {
   background-color: #009dff13;
 }
 
 .products__item_active {
   background-color: $blue;
 
-  &:hover{
+  &:hover {
     background-color: $blue;
   }
 
