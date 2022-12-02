@@ -17,10 +17,13 @@ const subreducers = {
 
 const reducer = combineReducers(subreducers);
 
+<<<<<<< HEAD
 declare global {
   var __REDUX_DEVTOOLS_EXTENSION__: any
 }
 
+=======
+>>>>>>> master
 const store = createStore(
   reducer,
   initialState,
