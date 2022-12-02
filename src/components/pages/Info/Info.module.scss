@@ -1,23 +1,22 @@
-@import '../../../styles/global'; 
-@import '../../../styles/button.scss';
+@import "../../../styles/global";
+@import "../../../styles/button.scss";
 
-
-.Info__content{
+.Info__content {
   color: #323941;
-  h3{
+  h3 {
     font-size: 25px;
     font-weight: 700;
     text-transform: uppercase;
     margin: 20px 0 10px 0;
   }
-  h5{
+  h5 {
     font-size: 18px;
     margin: 10px 0 5px 0;
   }
-  p{
+  p {
     font-size: 14px;
   }
-  a{
+  a {
     color: $blue;
   }
 }

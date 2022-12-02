@@ -1,7 +1,7 @@
-@import './global.scss';
+@import "./global.scss";
 
 body {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 
 $maxWidth: 1100;
@@ -9,9 +9,10 @@ $maxWidth: 1100;
 @mixin adaptive-font($pcSize, $mobSize) {
   $addSize: $pcSize - $mobSize;
   $maxWidth: $maxWidth - 320;
-  font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+  font-size: calc(
+    #{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth})
+  );
 }
-
 
 %textTitle {
   @include adaptive-font(50, 25);
@@ -29,7 +30,6 @@ $maxWidth: 1100;
   @include adaptive-font(14, 12);
 }
 
-
 h1 {
   text-transform: uppercase;
   font-weight: 700;
@@ -39,14 +39,10 @@ h1 {
   margin-bottom: 20px;
 }
 
-
 @media (min-width: 1100px) {
-
   %textSubtitle {
     font-size: 50px;
   }
-
-
 }
 
 @include for-tablet {

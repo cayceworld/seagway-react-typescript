@@ -8,6 +8,6 @@ const ProductsList = () => {
       <DesktopProducts />
     </>
   );
-}
+};
 
 export default ProductsList;

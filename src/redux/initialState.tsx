@@ -8,6 +8,5 @@ const initialState = {
   device: [],
 
   orders: [],
-
-}
-export default initialState; 
+};
+export default initialState;

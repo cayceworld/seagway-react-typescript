@@ -2,14 +2,14 @@
 export const getDevice = ({ device }) => device;
 
 /* action name creator */
-const reducerName = 'device';
-const createActionName = name => `app/${reducerName}/${name}`;
+const reducerName = "device";
+const createActionName = (name) => `app/${reducerName}/${name}`;
 
 /* action types */
-const WINDOW_RESIZE = createActionName('WINDOW_RESIZE');
+const WINDOW_RESIZE = createActionName("WINDOW_RESIZE");
 
 /* action creators */
-export const windowResize = payload => ({ type: WINDOW_RESIZE, payload });
+export const windowResize = (payload) => ({ type: WINDOW_RESIZE, payload });
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
