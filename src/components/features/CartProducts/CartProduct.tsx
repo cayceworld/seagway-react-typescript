@@ -6,47 +6,49 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { CartItem } from "../../../types/CartItem";
 
 export const CartProduct: React.FC<CartItem> = (props) => {
-  const item = props;
+
   const dispatch = useDispatch();
 
+  const { amount, inStock, image, id, title, category, price} = props; 
+
   const addOne = () => {
-    if (item.amount < 10 && item.amount < item.inStock) {
-      dispatch(addAmount({ id: item.id, amount: 1 }));
+    if (amount < 10 && amount < inStock) {
+      dispatch(addAmount({ id, amount: 1 }));
     }
   };
 
   const removeOne = () => {
-    if (item.amount > 1) dispatch(removeAmount({ id: item.id, amount: 1 }));
+    if (amount > 1) dispatch(removeAmount({ id, amount: 1 }));
   };
 
   const remove = () => {
-    dispatch(removeItem({ id: item.id }));
+    dispatch(removeItem({ id }));
   };
 
   return (
     <div className={styles.CartProduct__item}>
       <div className={styles.CartProduct__image}>
-        {item.category === "kickscooter" && (
+        {category === "kickscooter" && (
           <img
             className={styles.navicons__img}
-            src={`${process.env.PUBLIC_URL}/images/Kickscooters List/${item.image}`}
+            src={`${process.env.PUBLIC_URL}/images/Kickscooters List/${image}`}
           />
         )}
-        {item.category === "accessory" && (
+        {category === "accessory" && (
           <img
             className={styles.navicons__img}
-            src={`${process.env.PUBLIC_URL}/images/Accessories/${item.image}`}
+            src={`${process.env.PUBLIC_URL}/images/Accessories/${image}`}
           />
         )}
       </div>
-      <div className={styles.CartProduct__title}>{item.title}</div>
+      <div className={styles.CartProduct__title}>{title}</div>
       <div className={styles.CartProduct__amount}>
-        <div className={styles.CartProduct__value}>{item.amount}</div>
+        <div className={styles.CartProduct__value}>{amount}</div>
         <div className={styles.CartProduct__change}>
           <div
             onClick={addOne}
             className={clsx(
-              item.amount == 10 && styles.CartProduct__change_disabled
+              amount == 10 && styles.CartProduct__change_disabled
             )}
           >
             +
@@ -54,7 +56,7 @@ export const CartProduct: React.FC<CartItem> = (props) => {
           <div
             onClick={removeOne}
             className={clsx(
-              item.amount == 1 && styles.CartProduct__change_disabled
+              amount == 1 && styles.CartProduct__change_disabled
             )}
           >
             -
@@ -62,7 +64,7 @@ export const CartProduct: React.FC<CartItem> = (props) => {
         </div>
       </div>
       <div className={styles.CartProduct__price}>
-        ${item.price * item.amount}
+        ${price * amount}
       </div>
       <BsFillTrashFill
         onClick={remove}
