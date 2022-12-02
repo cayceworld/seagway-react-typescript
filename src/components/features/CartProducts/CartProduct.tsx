@@ -3,20 +3,12 @@ import styles from './CartProducts.module.scss';
 import { addAmount, removeAmount, removeItem } from '../../../redux/cartRedux';
 import clsx from 'clsx';
 import { BsFillTrashFill } from 'react-icons/bs';
+import { CartItem } from '../../../types/CartItem';
 
 
-interface Item {
-  amount: number,
-  category: string, 
-  id:  string,
-  image: string,
-  inStock: number,
-  price: number, 
-  title: string
-}
 
 
-export const CartProduct: React.FC<Item> = props => {
+export const CartProduct: React.FC<CartItem> = props => {
 
   const item = props;
   const dispatch = useDispatch();

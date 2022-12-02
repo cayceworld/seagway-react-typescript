@@ -5,10 +5,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css/navigation';
 import 'swiper/css';
-import Product from './Product';
+import { Product } from './Product';
+import { ProductType } from '../../../types/ProductType';
 
 const MobileProducts = () => {
-  const kickscooters = useSelector(getAllKickscooters);
+  const kickscooters: Array<ProductType> = useSelector(getAllKickscooters);
+
   return (
     <div className={styles.MobileProducts}>
       <Swiper

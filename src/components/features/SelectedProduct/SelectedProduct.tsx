@@ -3,7 +3,7 @@ import "swiper/css/pagination";
 import 'swiper/css';
 import { getSelectedKickscooter } from '../../../redux/kickscooterRedux';
 import { useDispatch, useSelector } from 'react-redux';
-import Gallery from './Gallery';
+import { Gallery } from './Gallery';
 import Gift from '../../views/Gift/Gift';
 import ProductInfo from '../../views/ProductInfo/ProductInfo';
 import PackingList from '../../views/PackingList/PackingList';
@@ -11,12 +11,13 @@ import { addToCart, getCartProducts, addAmount } from '../../../redux/cartRedux'
 import { getDevice } from '../../../redux/deviseRedux';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
+import { CartItem } from '../../../types/CartItem';
 
 
 
 const SelectedProduct = () => {
 
-  const cart = useSelector(getCartProducts);
+  const cart: Array<CartItem> = useSelector(getCartProducts);
   const kickscooter = useSelector(getSelectedKickscooter);
 
   const device = useSelector(getDevice);
@@ -28,9 +29,9 @@ const SelectedProduct = () => {
 
 
   const addProduct = () => {
-    const addedItem = cart.find(item => item.id == kickscooter.id);
+    const addedItem = cart.find(item => item.id === kickscooter.id);
 
-    if (addedItem == undefined) {
+    if (!addedItem) {
       dispatch(addToCart({
         title: kickscooter.title, id: kickscooter.id,
         image: kickscooter.image, price: kickscooter.price, category: 'kickscooter', amount: 1, inStock: kickscooter.inStock
@@ -58,7 +59,7 @@ const SelectedProduct = () => {
                   SEGWAY Ninebot {kickscooter.title}
                 </h2>
                 {!isDesktop && <div className={styles.SelectedProduct__gallery}>
-                  <Gallery kickscooter={kickscooter} />
+                  <Gallery gallery={kickscooter.gallery} image={kickscooter.image} />
                 </div>}
                 {!isDesktop && <Gift gift={kickscooter.gift} />}
                 <div className={styles.SelectedProduct__deal}>
@@ -132,7 +133,7 @@ const SelectedProduct = () => {
                 </div>
               </div>
               {isDesktop && <div className={styles.SelectedProduct__gallery}>
-                <Gallery kickscooter={kickscooter} />
+                <Gallery gallery={kickscooter.gallery} image={kickscooter.image} />
               </div>}
             </div>
             <ProductInfo kickscooter={kickscooter} isDesktop={isDesktop} />

@@ -6,5 +6,5 @@ export interface ProductType {
   isSelect?: boolean,
   inStock?: number,
   description?: string;
- 
+
 }

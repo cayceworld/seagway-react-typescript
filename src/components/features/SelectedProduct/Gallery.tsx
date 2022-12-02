@@ -1,11 +1,14 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from "swiper";
 
-interface GalleryType {
-  kickscooter:{
-    gallery:string
-  }
-}
+
+
+type GalleryType = {
+  gallery: {
+    image: string
+  }[];
+  image: string;
+};
 
 export const Gallery: React.FC<GalleryType> = props => {
 
@@ -19,9 +22,9 @@ export const Gallery: React.FC<GalleryType> = props => {
       pagination={true}
       modules={[Pagination]}
     >
-      {props.kickscooter.gallery.length == 0
-        ? <img src={`${process.env.PUBLIC_URL}/images/Kickscooters List/${props.kickscooter.image}`} />
-        : props.kickscooter.gallery.map(image => <SwiperSlide key={image.image} ><img src={`${process.env.PUBLIC_URL}/images/Kickscooters Gallery/${image.image}`} /></SwiperSlide>)
+      {props.gallery.length == 0
+        ? <img src={`${process.env.PUBLIC_URL}/images/Kickscooters List/${props.image}`} />
+        : props.gallery.map(image => <SwiperSlide key={image.image} ><img src={`${process.env.PUBLIC_URL}/images/Kickscooters Gallery/${image.image}`} /></SwiperSlide>)
       }
     </Swiper>
 
