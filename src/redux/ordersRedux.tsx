@@ -1,18 +1,14 @@
 import { API_URL } from "../config";
+import { Store } from "./initialState";
+
 
 //selectors
-export const getOrders = (state) => state.orders;
+export const getOrders = (state: Store) => state.orders;
 
-// action name creator
-const createActionName = (actionName) => `app/orders/${actionName}`;
-
-// action types
-const ADD_TO_ORDERS = createActionName("ADD_TO_ORDERS");
-const LOAD_ORDERS = createActionName("LOAD_ORDERS");
 
 // action creators
-export const addToOrders = (payload) => ({ type: ADD_TO_ORDERS, payload });
-export const loadOrders = (payload) => ({ type: LOAD_ORDERS, payload });
+export const addToOrders = (payload: Store["orders"]) => ({ type: "ADD_TO_ORDERS", payload });
+export const loadOrders = (payload: Store["orders"]) => ({ type: "LOAD_ORDERS", payload });
 
 export const fetchOrders = () => {
   return (dispatch) => {
@@ -22,7 +18,7 @@ export const fetchOrders = () => {
   };
 };
 
-export const addOrder = (order, goToOrderPage) => {
+export const addOrder = (order: Store["orders"], goToOrderPage) => {
   console.log("order", order);
   return () => {
     const options = {
@@ -36,13 +32,26 @@ export const addOrder = (order, goToOrderPage) => {
   };
 };
 
+//action types
+
+interface AddOrderAction {
+  type: "ADD_TO_ORDERS",
+  payload: Store["orders"]
+}
+
+interface LoadOrdersAction {
+  type: "LOAD_ORDERS",
+  payload: Array<Store["orders"]>
+}
+
+export type OrdersReducerAction = AddOrderAction | LoadOrdersAction;
+
 // reducer
-const ordersReducer = (statePart = [], action) => {
+const ordersReducer = (statePart = [], action: OrdersReducerAction) => {
   switch (action.type) {
-    case ADD_TO_ORDERS:
+    case "ADD_TO_ORDERS":
       return [...statePart, { ...action.payload }];
-    case LOAD_ORDERS:
-      console.log("db.orders:", action.payload);
+    case "LOAD_ORDERS":
       return [...action.payload];
     default:
       return statePart;

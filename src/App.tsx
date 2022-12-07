@@ -19,8 +19,8 @@ function App() {
 
   useEffect(
     () => dispatch(fetchKickscooters()),
-    //dispatch(fetchAccessories()),
-    //dispatch(fetchOrders()),
+    dispatch(fetchAccessories()),
+    dispatch(fetchOrders()),
 
     [dispatch]
   );

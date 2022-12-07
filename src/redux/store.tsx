@@ -1,11 +1,13 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import initialState from "./initialState";
-import kickscooterReducer from "./kickscooterRedux";
-import accessoriesReducer from "./accessoriesRedux";
-import cartReducer from "./cartRedux";
+import kickscooterReducer, { KickscooterReducerAction } from "./kickscooterRedux";
+import accessoriesReducer, { LoadAccessoriesAction} from "./accessoriesRedux";
+import cartReducer, {CartReducerAction} from "./cartRedux";
 import deviceReducer from "./deviseRedux";
 import ordersReducer from "./ordersRedux";
+
+export type ActionType = LoadAccessoriesAction | CartReducerAction | KickscooterReducerAction
 
 const subreducers = {
   kickscooters: kickscooterReducer,
@@ -17,13 +19,10 @@ const subreducers = {
 
 const reducer = combineReducers(subreducers);
 
-<<<<<<< HEAD
 declare global {
   var __REDUX_DEVTOOLS_EXTENSION__: any
 }
 
-=======
->>>>>>> master
 const store = createStore(
   reducer,
   initialState,
@@ -32,7 +31,7 @@ const store = createStore(
     applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__
       ? window.__REDUX_DEVTOOLS_EXTENSION__()
-      : (f) => f
+      : (f: any) => f
   )
 );
 

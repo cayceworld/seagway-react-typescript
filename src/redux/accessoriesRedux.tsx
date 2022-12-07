@@ -1,19 +1,19 @@
 import { API_URL } from "../config";
+import { Store } from "./initialState";
+import { ProductType } from "../types/ProductType";
+import { CartItem } from "../types/CartItem";
+
 
 //selectors
-export const getGiftAccessoryByKickscooter = ({ accessories }, gift) =>
+export const getGiftAccessoryByKickscooter = ({ accessories }: Store, gift: string) =>
   accessories.find((accessory) => accessory.title === gift);
-export const getAllAccessories = (state) => state.accessories;
+export const getAllAccessories = (state: Store) => state.accessories;
 
-// action name creator
-const createActionName = (actionName) => `app/accessories/${actionName}`;
 
-// action types
-const LOAD_ACCESSORIES = createActionName("LOAD_ACCESSORIES");
 
 // action creators
-export const loadAccessories = (payload) => ({
-  type: LOAD_ACCESSORIES,
+export const loadAccessories = (payload: ProductType) => ({
+  type: "LOAD_ACCESSORIES",
   payload,
 });
 export const fetchAccessories = () => {
@@ -23,7 +23,7 @@ export const fetchAccessories = () => {
       .then((accessories) => dispatch(loadAccessories(accessories)));
   };
 };
-export const updateAmountAccessoryRequest = (accessory) => {
+export const updateAmountAccessoryRequest = (accessory: ProductType) => {
   return () => {
     const options = {
       method: "PATCH",
@@ -36,11 +36,17 @@ export const updateAmountAccessoryRequest = (accessory) => {
   };
 };
 
+//action types
+
+export interface LoadAccessoriesAction {
+  type: "LOAD_ACCESSORIES"
+  payload: CartItem[]
+}
+
 // reducer
-const accessoriesReducer = (statePart = [], action) => {
+const accessoriesReducer = (statePart = [], action: LoadAccessoriesAction) => {
   switch (action.type) {
-    case LOAD_ACCESSORIES:
-      console.log("db.accessories:", action.payload);
+    case "LOAD_ACCESSORIES":
       return [...action.payload];
     default:
       return statePart;

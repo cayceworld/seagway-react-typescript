@@ -1,20 +1,24 @@
+import { Store } from "./initialState";
+
+
 /* selectors */
-export const getDevice = ({ device }) => device;
+export const getDevice = ({ device }:Store) => device;
 
-/* action name creator */
-const reducerName = "device";
-const createActionName = (name) => `app/${reducerName}/${name}`;
-
-/* action types */
-const WINDOW_RESIZE = createActionName("WINDOW_RESIZE");
 
 /* action creators */
-export const windowResize = (payload) => ({ type: WINDOW_RESIZE, payload });
+export const windowResize = (payload: boolean) => ({ type: "WINDOW_RESIZE", payload });
+
+//action type
+interface DeviceType {
+  type: "WINDOW_RESIZE"
+  payload: boolean
+}
+
 
 /* reducer */
-export default function reducer(statePart = [], action = {}) {
+export default function reducer(statePart = [], action: DeviceType) {
   switch (action.type) {
-    case WINDOW_RESIZE:
+    case "WINDOW_RESIZE":
       return action.payload;
     default:
       return statePart;
