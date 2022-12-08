@@ -1,14 +1,18 @@
 import { API_URL } from "../config";
 import { Store } from "./initialState";
 
-
 //selectors
 export const getOrders = (state: Store) => state.orders;
 
-
 // action creators
-export const addToOrders = (payload: Store["orders"]) => ({ type: "ADD_TO_ORDERS", payload });
-export const loadOrders = (payload: Store["orders"]) => ({ type: "LOAD_ORDERS", payload });
+export const addToOrders = (payload: Store["orders"]) => ({
+  type: "ADD_TO_ORDERS",
+  payload,
+});
+export const loadOrders = (payload: Store["orders"]) => ({
+  type: "LOAD_ORDERS",
+  payload,
+});
 
 export const fetchOrders = () => {
   return (dispatch) => {
@@ -35,13 +39,13 @@ export const addOrder = (order: Store["orders"], goToOrderPage) => {
 //action types
 
 interface AddOrderAction {
-  type: "ADD_TO_ORDERS",
-  payload: Store["orders"]
+  type: "ADD_TO_ORDERS";
+  payload: Store["orders"];
 }
 
 interface LoadOrdersAction {
-  type: "LOAD_ORDERS",
-  payload: Array<Store["orders"]>
+  type: "LOAD_ORDERS";
+  payload: Array<Store["orders"]>;
 }
 
 export type OrdersReducerAction = AddOrderAction | LoadOrdersAction;

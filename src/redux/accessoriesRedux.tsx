@@ -3,13 +3,12 @@ import { Store } from "./initialState";
 import { ProductType } from "../types/ProductType";
 import { CartItem } from "../types/CartItem";
 
-
 //selectors
-export const getGiftAccessoryByKickscooter = ({ accessories }: Store, gift: string) =>
-  accessories.find((accessory) => accessory.title === gift);
+export const getGiftAccessoryByKickscooter = (
+  { accessories }: Store,
+  gift: string
+) => accessories.find((accessory) => accessory.title === gift);
 export const getAllAccessories = (state: Store) => state.accessories;
-
-
 
 // action creators
 export const loadAccessories = (payload: ProductType) => ({
@@ -39,8 +38,8 @@ export const updateAmountAccessoryRequest = (accessory: ProductType) => {
 //action types
 
 export interface LoadAccessoriesAction {
-  type: "LOAD_ACCESSORIES"
-  payload: CartItem[]
+  type: "LOAD_ACCESSORIES";
+  payload: CartItem[];
 }
 
 // reducer

@@ -3,18 +3,17 @@ import { Store } from "./initialState";
 import { CartItem } from "../types/CartItem";
 import { ProductType } from "../types/ProductType";
 
-
 //selectors
-export const getSelectedKickscooter = (state:Store) =>
+export const getSelectedKickscooter = (state: Store) =>
   state.kickscooters.find((kickscooter) => kickscooter.isSelect === true);
-export const getAllKickscooters = (state:Store) => state.kickscooters;
+export const getAllKickscooters = (state: Store) => state.kickscooters;
 
 // action creators
-export const toggleSelect = (payload:ProductType) => ({
+export const toggleSelect = (payload: ProductType) => ({
   type: "TOGGLE_KICKSCOOTER_SELECT",
   payload,
 });
-export const loadKickscooters = (payload:Store["kickscooters"]) => ({
+export const loadKickscooters = (payload: Store["kickscooters"]) => ({
   type: "LOAD_KICKSCOOTERS",
   payload,
 });
@@ -25,7 +24,7 @@ export const fetchKickscooters = () => {
       .then((kickscooters) => dispatch(loadKickscooters(kickscooters)));
   };
 };
-export const updateAmountKickscooterRequest = (kickscooter:ProductType) => {
+export const updateAmountKickscooterRequest = (kickscooter: ProductType) => {
   return () => {
     const options = {
       method: "PATCH",
@@ -40,22 +39,26 @@ export const updateAmountKickscooterRequest = (kickscooter:ProductType) => {
   };
 };
 
-
 // action types
 interface ToggleKickscooterAction {
-  type: "TOGGLE_KICKSCOOTER_SELECT"
-  payload: CartItem
+  type: "TOGGLE_KICKSCOOTER_SELECT";
+  payload: CartItem;
 }
 
 interface LoadKickscooterAction {
-  type: "LOAD_KICKSCOOTERS"
-  payload:Store["kickscooters"]
+  type: "LOAD_KICKSCOOTERS";
+  payload: Store["kickscooters"];
 }
 
-export type KickscooterReducerAction = ToggleKickscooterAction | LoadKickscooterAction;
+export type KickscooterReducerAction =
+  | ToggleKickscooterAction
+  | LoadKickscooterAction;
 
 // reducer
-const kickscooterReducer = (statePart:Store["kickscooters"] = [], action: KickscooterReducerAction) => {
+const kickscooterReducer = (
+  statePart: Store["kickscooters"] = [],
+  action: KickscooterReducerAction
+) => {
   switch (action.type) {
     case "TOGGLE_KICKSCOOTER_SELECT":
       return statePart.map((kickscooter) =>
@@ -70,5 +73,3 @@ const kickscooterReducer = (statePart:Store["kickscooters"] = [], action: Kicksc
   }
 };
 export default kickscooterReducer;
-
-

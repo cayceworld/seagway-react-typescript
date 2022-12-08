@@ -3,69 +3,68 @@ import { CartItem } from "../types/CartItem";
 
 export interface Store {
   kickscooters: {
-    id: string,
-    title: string,
-    price: number,
-    image: string,
-    isSelect: boolean,
-    inStock: number,
-    gift: string,
+    id: string;
+    title: string;
+    price: number;
+    image: string;
+    isSelect: boolean;
+    inStock: number;
+    gift: string;
     gallery: {
-      image: string
-    }[],
+      image: string;
+    }[];
     delivery: {
-      title: string,
-      subtitle: string,
-      text: string,
-      ico: string
-    }
+      title: string;
+      subtitle: string;
+      text: string;
+      ico: string;
+    };
     warranty: {
-      title: string,
-      subtitle: string,
-      text: string,
-      years: string,
-      extend: {}
-    },
+      title: string;
+      subtitle: string;
+      text: string;
+      years: string;
+      extend: {};
+    };
     support: {
-      title: string,
-      subtitle: string,
-      text: string,
-      ico: string
-    },
+      title: string;
+      subtitle: string;
+      text: string;
+      ico: string;
+    };
     description: {
-      title: string,
-      subtitle: string,
-      text: string,
-      miles: string
-    },
-    packingList: string,
-    youtubeVideo: string
+      title: string;
+      subtitle: string;
+      text: string;
+      miles: string;
+    };
+    packingList: string;
+    youtubeVideo: string;
   }[];
 
   accessories: {
-    id: string,
-    title: string,
-    description: string,
-    price: number,
-    image: string,
-    inStock: number
-  }[],
+    id: string;
+    title: string;
+    description: string;
+    price: number;
+    image: string;
+    inStock: number;
+  }[];
 
-  cart?: CartItem[],
+  cart?: CartItem[];
 
   device?: {
-    isDesktop: boolean
-  }[],
+    isDesktop: boolean;
+  }[];
 
   orders?: {
-    id: string,
-    items: ProductTypeWithCategory[],
-    userInfo: string[]
-
-  }[],
+    id: string;
+    items: ProductTypeWithCategory[];
+    userInfo: string[];
+  }[];
 }
 
-type ProductTypeWithCategory = ProductType & { category: string }
+type ProductTypeWithCategory = ProductType & { category: string };
 
 const initialState: Store = {
   kickscooters: [],

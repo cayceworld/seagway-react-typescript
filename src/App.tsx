@@ -17,13 +17,11 @@ import Info from "./components/pages/Info/Info";
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(
-    () => dispatch(fetchKickscooters()),
-    dispatch(fetchAccessories()),
-    dispatch(fetchOrders()),
-
-    [dispatch]
-  );
+  useEffect(() => {
+    dispatch(fetchKickscooters());
+    dispatch(fetchAccessories());
+    dispatch(fetchOrders());
+  }, [dispatch]);
 
   const [width, setWidth] = useState(window.innerWidth);
 
