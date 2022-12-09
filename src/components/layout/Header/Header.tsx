@@ -1,7 +1,7 @@
 import Navbar from "../../views/Navbar/Navbar";
 import LogoSection from "../../views/LogoSection/LogoSection";
 import { useSelector } from "react-redux";
-import { getDevice } from "../../../redux/deviseRedux";
+import { getDevice } from "../../../redux/deviceRedux";
 
 const Header = () => {
   //const device = useSelector(getDevice);

@@ -1,7 +1,7 @@
 import { API_URL } from "../config";
 import { Store } from "./initialState";
 import { ProductType } from "../types/ProductType";
-import { CartItem } from "../types/CartItem";
+import { ActionType } from "./store";
 
 //selectors
 export const getGiftAccessoryByKickscooter = (
@@ -11,7 +11,9 @@ export const getGiftAccessoryByKickscooter = (
 export const getAllAccessories = (state: Store) => state.accessories;
 
 // action creators
-export const loadAccessories = (payload: ProductType) => ({
+export const loadAccessories = (
+  payload: ProductType[]
+): LoadAccessoriesAction => ({
   type: "LOAD_ACCESSORIES",
   payload,
 });
@@ -39,11 +41,14 @@ export const updateAmountAccessoryRequest = (accessory: ProductType) => {
 
 export interface LoadAccessoriesAction {
   type: "LOAD_ACCESSORIES";
-  payload: CartItem[];
+  payload: ProductType[];
 }
 
 // reducer
-const accessoriesReducer = (statePart = [], action: LoadAccessoriesAction) => {
+const accessoriesReducer = (
+  statePart: Store["accessories"] = [],
+  action: ActionType
+) => {
   switch (action.type) {
     case "LOAD_ACCESSORIES":
       return [...action.payload];

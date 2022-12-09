@@ -5,7 +5,7 @@ import Cart from "./components/pages/Cart/Cart";
 import { useDispatch } from "react-redux";
 import AccessoriesPage from "./components/pages/AccessoriesPage/AccessoriesPage";
 import { useState, useEffect } from "react";
-import { windowResize } from "./redux/deviseRedux";
+import { windowResize } from "./redux/deviceRedux";
 import NotFound from "./components/pages/NotFound/NotFound";
 import Footer from "./components/layout/Footer/Footer";
 import { fetchKickscooters } from "./redux/kickscooterRedux";
@@ -13,6 +13,7 @@ import { fetchAccessories } from "./redux/accessoriesRedux";
 import OrderStatus from "./components/pages/OrderStatus/OrderStatus";
 import { fetchOrders } from "./redux/ordersRedux";
 import Info from "./components/pages/Info/Info";
+import { Store } from "./redux/initialState";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,13 +30,15 @@ function App() {
     const handleWindowResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleWindowResize);
     sizeChange();
-
     return () => window.removeEventListener("resize", handleWindowResize);
   }, [width]);
 
   const isDesktop = width >= 768;
-  const sizeChange = (e) => {
-    dispatch(windowResize({ isDesktop }));
+  console.log(isDesktop);
+
+
+  const sizeChange = () => {
+    dispatch(windowResize(isDesktop));
   };
 
   return (

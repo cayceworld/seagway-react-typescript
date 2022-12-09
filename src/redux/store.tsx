@@ -6,13 +6,16 @@ import kickscooterReducer, {
 } from "./kickscooterRedux";
 import accessoriesReducer, { LoadAccessoriesAction } from "./accessoriesRedux";
 import cartReducer, { CartReducerAction } from "./cartRedux";
-import deviceReducer from "./deviseRedux";
-import ordersReducer from "./ordersRedux";
+import deviceReducer from "./deviceRedux";
+import ordersReducer, { OrdersReducerAction } from "./ordersRedux";
+import { DeviceType } from "./deviceRedux";
 
 export type ActionType =
   | LoadAccessoriesAction
   | CartReducerAction
-  | KickscooterReducerAction;
+  | KickscooterReducerAction
+  | DeviceType
+  | OrdersReducerAction;
 
 const subreducers = {
   kickscooters: kickscooterReducer,

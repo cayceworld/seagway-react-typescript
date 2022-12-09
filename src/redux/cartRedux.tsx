@@ -1,5 +1,6 @@
 import { Store } from "./initialState";
 import { CartItem } from "../types/CartItem";
+import { ActionType } from "./store";
 
 //selectors
 export const getCartProducts = (state: Store) => state.cart;
@@ -61,24 +62,21 @@ export type CartReducerAction =
   | RemoveAmountAction;
 
 // reducer
-const cartReducer = (
-  statePart: Store["cart"] = [],
-  action: CartReducerAction
-) => {
+const cartReducer = (statePart: Store["cart"] = [], action: ActionType) => {
   switch (action.type) {
     case "ADD_TO_CART":
       return [...statePart, { ...action.payload }];
     case "ADD_AMOUNT":
-      return statePart.map((item) => {
+      return statePart.map((item) =>
         item.id === action.id
           ? { ...item, amount: item.amount + action.amount }
-          : { ...item };
-      });
+          : item
+      );
     case "REMOVE_AMOUNT":
       return statePart.map((item) =>
         item.id === action.payload.id
           ? { ...item, amount: item.amount - action.payload.amount }
-          : { ...item }
+          : item
       );
     case "REMOVE_ITEM":
       return statePart.filter((item) => item.id !== action.id);

@@ -2,6 +2,7 @@ import { API_URL } from "../config";
 import { Store } from "./initialState";
 import { CartItem } from "../types/CartItem";
 import { ProductType } from "../types/ProductType";
+import { ActionType } from "./store";
 
 //selectors
 export const getSelectedKickscooter = (state: Store) =>
@@ -13,7 +14,9 @@ export const toggleSelect = (payload: ProductType) => ({
   type: "TOGGLE_KICKSCOOTER_SELECT",
   payload,
 });
-export const loadKickscooters = (payload: Store["kickscooters"]) => ({
+export const loadKickscooters = (
+  payload: Store["kickscooters"]
+): LoadKickscooterAction => ({
   type: "LOAD_KICKSCOOTERS",
   payload,
 });
@@ -57,7 +60,7 @@ export type KickscooterReducerAction =
 // reducer
 const kickscooterReducer = (
   statePart: Store["kickscooters"] = [],
-  action: KickscooterReducerAction
+  action: ActionType
 ) => {
   switch (action.type) {
     case "TOGGLE_KICKSCOOTER_SELECT":

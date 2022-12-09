@@ -1,15 +1,13 @@
 import { API_URL } from "../config";
-import { Store } from "./initialState";
-
-//selectors
-export const getOrders = (state: Store) => state.orders;
+import { ActionType } from "./store";
+import { Order } from "./initialState";
 
 // action creators
-export const addToOrders = (payload: Store["orders"]) => ({
+export const addToOrders = (payload: Order): AddOrderAction => ({
   type: "ADD_TO_ORDERS",
   payload,
 });
-export const loadOrders = (payload: Store["orders"]) => ({
+export const loadOrders = (payload: Order[]): LoadOrdersAction => ({
   type: "LOAD_ORDERS",
   payload,
 });
@@ -22,7 +20,7 @@ export const fetchOrders = () => {
   };
 };
 
-export const addOrder = (order: Store["orders"], goToOrderPage) => {
+export const addOrder = (order: Order, goToOrderPage) => {
   console.log("order", order);
   return () => {
     const options = {
@@ -40,18 +38,21 @@ export const addOrder = (order: Store["orders"], goToOrderPage) => {
 
 interface AddOrderAction {
   type: "ADD_TO_ORDERS";
-  payload: Store["orders"];
+  payload: Order;
 }
 
 interface LoadOrdersAction {
   type: "LOAD_ORDERS";
-  payload: Array<Store["orders"]>;
+  payload: Order[];
 }
 
 export type OrdersReducerAction = AddOrderAction | LoadOrdersAction;
 
 // reducer
-const ordersReducer = (statePart = [], action: OrdersReducerAction) => {
+const ordersReducer = (
+  statePart: Order[] = [],
+  action: ActionType
+): Order[] => {
   switch (action.type) {
     case "ADD_TO_ORDERS":
       return [...statePart, { ...action.payload }];

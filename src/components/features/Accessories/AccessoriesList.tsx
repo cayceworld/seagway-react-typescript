@@ -2,7 +2,7 @@ import DesktopAccessories from "./DesktopAccessories";
 import MobileAccessories from "./MobileAccessories";
 import styles from "./AccessoriesList.module.scss";
 import { useSelector } from "react-redux";
-import { getDevice } from "../../../redux/deviseRedux";
+import { getDevice } from "../../../redux/deviceRedux";
 import { getAllAccessories } from "../../../redux/accessoriesRedux";
 
 const AccessoriesList = () => {

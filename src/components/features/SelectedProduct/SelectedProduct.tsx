@@ -12,7 +12,7 @@ import {
   getCartProducts,
   addAmount,
 } from "../../../redux/cartRedux";
-import { getDevice } from "../../../redux/deviseRedux";
+import { getDevice } from "../../../redux/deviceRedux";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { CartItem } from "../../../types/CartItem";

@@ -51,26 +51,23 @@ export interface Store {
     inStock: number;
   }[];
 
-  cart?: CartItem[];
+  cart: CartItem[];
 
-  device?: {
-    isDesktop: boolean;
-  }[];
-
-  orders?: {
-    id: string;
-    items: ProductTypeWithCategory[];
-    userInfo: string[];
-  }[];
+  isDesktop: boolean | null;
 }
 
+export interface Order {
+  id: string;
+  items: ProductTypeWithCategory[];
+  userInfo: string[];
+}
 type ProductTypeWithCategory = ProductType & { category: string };
 
-const initialState: Store = {
+const initialState: Store & { orders: Order[] } = {
   kickscooters: [],
   accessories: [],
   cart: [],
-  device: [],
+  isDesktop: null,
   orders: [],
 };
 
