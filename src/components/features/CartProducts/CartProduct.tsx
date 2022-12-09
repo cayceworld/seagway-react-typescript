@@ -6,10 +6,9 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { CartItem } from "../../../types/CartItem";
 
 export const CartProduct: React.FC<CartItem> = (props) => {
-
   const dispatch = useDispatch();
 
-  const { amount, inStock, image, id, title, category, price} = props; 
+  const { amount, inStock, image, id, title, category, price } = props;
 
   const addOne = () => {
     if (amount < 10 && amount < inStock) {
@@ -55,17 +54,13 @@ export const CartProduct: React.FC<CartItem> = (props) => {
           </div>
           <div
             onClick={removeOne}
-            className={clsx(
-              amount == 1 && styles.CartProduct__change_disabled
-            )}
+            className={clsx(amount == 1 && styles.CartProduct__change_disabled)}
           >
             -
           </div>
         </div>
       </div>
-      <div className={styles.CartProduct__price}>
-        ${price * amount}
-      </div>
+      <div className={styles.CartProduct__price}>${price * amount}</div>
       <BsFillTrashFill
         onClick={remove}
         className={styles.CartProduct__icon}

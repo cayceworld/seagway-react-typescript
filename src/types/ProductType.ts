@@ -1,5 +1,5 @@
-export type PartialProductType = { id: string } & Partial<ProductAttributes>
-export type ProductType = { id: string } & ProductAttributes
+export type PartialProductType = { id: string } & Partial<ProductAttributes>;
+export type ProductType = { id: string } & ProductAttributes;
 
 export interface ProductAttributes {
   title: string;
@@ -8,4 +8,4 @@ export interface ProductAttributes {
   isSelect: boolean;
   inStock: number;
   description: string;
-} 
+}
