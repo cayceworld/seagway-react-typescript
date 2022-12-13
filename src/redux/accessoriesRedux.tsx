@@ -1,7 +1,7 @@
 import { API_URL } from "../config";
 import { Store } from "./initialState";
-import { ProductType } from "../types/ProductType";
-import { ActionType } from "./store";
+import { AccessoriesProduct } from "../types/ProductType";
+import { ActionType, AppDispatch } from "./store";
 
 //selectors
 export const getGiftAccessoryByKickscooter = (
@@ -12,19 +12,22 @@ export const getAllAccessories = (state: Store) => state.accessories;
 
 // action creators
 export const loadAccessories = (
-  payload: ProductType[]
+  payload: AccessoriesProduct[]
 ): LoadAccessoriesAction => ({
   type: "LOAD_ACCESSORIES",
   payload,
 });
 export const fetchAccessories = () => {
-  return (dispatch) => {
+  return (dispatch: AppDispatch) => {
     fetch(`${API_URL}/accessories`)
       .then((res) => res.json())
       .then((accessories) => dispatch(loadAccessories(accessories)));
   };
 };
-export const updateAmountAccessoryRequest = (accessory: ProductType) => {
+export const updateAmountAccessoryRequest = (accessory: {
+  id: string;
+  inStock: number;
+}) => {
   return () => {
     const options = {
       method: "PATCH",
@@ -41,7 +44,7 @@ export const updateAmountAccessoryRequest = (accessory: ProductType) => {
 
 export interface LoadAccessoriesAction {
   type: "LOAD_ACCESSORIES";
-  payload: ProductType[];
+  payload: AccessoriesProduct[];
 }
 
 // reducer

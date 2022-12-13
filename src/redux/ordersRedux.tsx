@@ -1,5 +1,5 @@
 import { API_URL } from "../config";
-import { ActionType } from "./store";
+import { ActionType, AppDispatch } from "./store";
 import { Order } from "./initialState";
 
 // action creators
@@ -13,15 +13,15 @@ export const loadOrders = (payload: Order[]): LoadOrdersAction => ({
 });
 
 export const fetchOrders = () => {
-  return (dispatch) => {
+  return (dispatch: AppDispatch) => {
     fetch(`${API_URL}/orders`)
       .then((res) => res.json())
       .then((orders) => dispatch(loadOrders(orders)));
   };
 };
+type CallbackFunction = () => void;
 
-export const addOrder = (order: Order, goToOrderPage) => {
-  console.log("order", order);
+export const addOrder = (order: Order, goToOrderPage: CallbackFunction) => {
   return () => {
     const options = {
       method: "POST",
@@ -30,7 +30,7 @@ export const addOrder = (order: Order, goToOrderPage) => {
       },
       body: JSON.stringify(order),
     };
-    fetch(`${API_URL}/orders/`, options).then(goToOrderPage());
+    fetch(`${API_URL}/orders/`, options).then(goToOrderPage);
   };
 };
 

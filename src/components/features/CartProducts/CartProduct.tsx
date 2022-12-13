@@ -12,16 +12,16 @@ export const CartProduct: React.FC<CartItem> = (props) => {
 
   const addOne = () => {
     if (amount < 10 && amount < inStock) {
-      dispatch(addAmount({ id, amount: 1 }));
+      dispatch(addAmount(id, 1));
     }
   };
 
   const removeOne = () => {
-    if (amount > 1) dispatch(removeAmount({ id, amount: 1 }));
+    if (amount > 1) dispatch(removeAmount(id, 1));
   };
 
   const remove = () => {
-    dispatch(removeItem({ id }));
+    dispatch(removeItem(id));
   };
 
   return (

@@ -2,10 +2,9 @@ import styles from "./ProductsList.module.scss";
 import { useSelector } from "react-redux";
 import { getAllKickscooters } from "../../../redux/kickscooterRedux";
 import { Product } from "./Product";
-import { ProductType } from "../../../types/ProductType";
 
 const DesktopProducts = () => {
-  const kickscooters: Array<ProductType> = useSelector(getAllKickscooters);
+  const kickscooters = useSelector(getAllKickscooters);
 
   return (
     <>
@@ -20,6 +19,8 @@ const DesktopProducts = () => {
                   title={kickscooter.title}
                   image={kickscooter.image}
                   isSelect={kickscooter.isSelect}
+                  price={kickscooter.price}
+                  inStock={kickscooter.inStock}
                 />
               ))}
             </div>

@@ -13,7 +13,6 @@ import { fetchAccessories } from "./redux/accessoriesRedux";
 import OrderStatus from "./components/pages/OrderStatus/OrderStatus";
 import { fetchOrders } from "./redux/ordersRedux";
 import Info from "./components/pages/Info/Info";
-import { Store } from "./redux/initialState";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +36,9 @@ function App() {
   console.log(isDesktop);
 
   const sizeChange = () => {
-    dispatch(windowResize(isDesktop));
+    if (!isDesktop) {
+      dispatch(windowResize(isDesktop));
+    }
   };
 
   return (

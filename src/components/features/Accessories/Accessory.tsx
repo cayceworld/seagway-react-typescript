@@ -7,10 +7,10 @@ import {
   addAmount,
 } from "../../../redux/cartRedux";
 import { useSelector } from "react-redux";
-import { ProductType } from "../../../types/ProductType";
 import { CartItem } from "../../../types/CartItem";
+import { AccessoriesProduct } from "../../../types/ProductType";
 
-export const Accessory: React.FC<ProductType> = ({
+export const Accessory: React.FC<AccessoriesProduct> = ({
   id,
   title,
   image,
@@ -38,7 +38,7 @@ export const Accessory: React.FC<ProductType> = ({
         })
       );
     } else if (addedItem.amount <= 9 && addedItem.amount < addedItem.inStock) {
-      dispatch(addAmount({ id: id, amount: 1 }));
+      dispatch(addAmount(id, 1));
     }
   };
 

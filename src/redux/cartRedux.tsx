@@ -15,9 +15,13 @@ export const addAmount = (id: string, amount: number): AddItemAmountAction => ({
   id,
   amount,
 });
-export const removeAmount = (payload: RemoveAmountAction) => ({
+export const removeAmount = (
+  id: string,
+  amount: number
+): RemoveAmountAction => ({
   type: "REMOVE_AMOUNT",
-  payload,
+  id,
+  amount,
 });
 export const removeItem = (id: string): RemoveItemAction => ({
   type: "REMOVE_ITEM",
@@ -48,10 +52,8 @@ interface ClearCartAction {
 
 interface RemoveAmountAction {
   type: "REMOVE_AMOUNT";
-  payload: {
-    id: string;
-    amount: number;
-  };
+  id: string;
+  amount: number;
 }
 
 export type CartReducerAction =
@@ -74,8 +76,8 @@ const cartReducer = (statePart: Store["cart"] = [], action: ActionType) => {
       );
     case "REMOVE_AMOUNT":
       return statePart.map((item) =>
-        item.id === action.payload.id
-          ? { ...item, amount: item.amount - action.payload.amount }
+        item.id === action.id
+          ? { ...item, amount: item.amount - action.amount }
           : item
       );
     case "REMOVE_ITEM":

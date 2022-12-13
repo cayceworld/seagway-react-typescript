@@ -2,7 +2,7 @@ import styles from "./Navbar.module.scss";
 import MobileNavigation from "./MobileNavigation";
 import Navigation from "./Navigation";
 
-const Navbar = (props) => {
+const Navbar: React.FC<{ isDesktop: boolean | null }> = (props) => {
   const isDesktop = props.isDesktop;
 
   return (

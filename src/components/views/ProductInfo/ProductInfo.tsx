@@ -1,10 +1,16 @@
 import styles from "./ProductInfo.module.scss";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Kickscooter, Store } from "../../../redux/initialState";
 
-const ProductInfo = (props) => {
-  const kickscooter = props.kickscooter;
-  const isDesktop = props.isDesktop;
+interface ProductInfoProps {
+  kickscooter: Kickscooter;
+  isDesktop: Store["isDesktop"];
+}
 
+const ProductInfo: React.FC<ProductInfoProps> = ({
+  kickscooter,
+  isDesktop,
+}) => {
   return (
     <Tabs
       className={styles.ProductInfo}

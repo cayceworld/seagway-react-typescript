@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 import { getDevice } from "../../../redux/deviceRedux";
 
 const Header = () => {
-  //const device = useSelector(getDevice);
-  //const isDesktop = device.isDesktop;
+  const device = useSelector(getDevice);
+  const isDesktop = device.isDesktop;
 
   return (
     <>
-      <Navbar /* isDesktop={isDesktop} */ />
+      <Navbar isDesktop={isDesktop} />
       <LogoSection />
     </>
   );

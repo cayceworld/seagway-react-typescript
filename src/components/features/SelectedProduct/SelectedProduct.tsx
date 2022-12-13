@@ -45,7 +45,7 @@ const SelectedProduct = () => {
       addedItem.amount <= 9 &&
       addedItem.amount < kickscooter.inStock
     ) {
-      dispatch(addAmount({ id: kickscooter.id, amount: 1 }));
+      dispatch(addAmount(kickscooter.id, 1));
     }
   };
 

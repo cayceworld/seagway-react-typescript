@@ -1,11 +1,10 @@
-export type PartialProductType = { id: string } & Partial<ProductAttributes>;
-export type ProductType = { id: string } & ProductAttributes;
-
-export interface ProductAttributes {
+export interface ProductType {
+  id: string;
   title: string;
   price: number;
   image: string;
-  isSelect: boolean;
   inStock: number;
-  description: string;
 }
+
+export type AccessoriesProduct = ProductType & { description: string };
+export type KickscooterProduct = ProductType & { isSelect: boolean };

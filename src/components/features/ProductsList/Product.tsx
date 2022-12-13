@@ -5,33 +5,34 @@ import {
   toggleSelect,
   getSelectedKickscooter,
 } from "../../../redux/kickscooterRedux";
-import { ProductType } from "../../../types/ProductType";
+import { KickscooterProduct } from "../../../types/ProductType";
 
-export const Product: React.FC<ProductType> = (props) => {
+export const Product: React.FC<KickscooterProduct> = (props) => {
   const dispatch = useDispatch();
+  const { id, isSelect, image, title } = props;
   const selectedKickscooter = useSelector(getSelectedKickscooter);
 
   const toggle = () => {
-    if (selectedKickscooter.id != props.id) {
-      dispatch(toggleSelect({ id: props.id, isSelect: props.isSelect }));
+    if (selectedKickscooter.id != id) {
+      dispatch(toggleSelect({ id, isSelect }));
     }
   };
 
   return (
     <div
       onClick={toggle}
-      key={props.id}
+      key={id}
       className={clsx(
         styles.products__item,
-        props.isSelect && styles.products__item_active
+        isSelect && styles.products__item_active
       )}
     >
       <div className={styles.products__image}>
         <img
-          src={`${process.env.PUBLIC_URL}/images/Kickscooters List/${props.image}`}
+          src={`${process.env.PUBLIC_URL}/images/Kickscooters List/${image}`}
         />
       </div>
-      <div className={styles.products__title}>{props.title}</div>
+      <div className={styles.products__title}>{title}</div>
     </div>
   );
 };

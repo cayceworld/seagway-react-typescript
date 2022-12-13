@@ -1,16 +1,20 @@
 import { API_URL } from "../config";
 import { Store } from "./initialState";
 import { CartItem } from "../types/CartItem";
-import { ProductType } from "../types/ProductType";
-import { ActionType } from "./store";
+import { ActionType, AppDispatch } from "./store";
 
 //selectors
 export const getSelectedKickscooter = (state: Store) =>
-  state.kickscooters.find((kickscooter) => kickscooter.isSelect === true);
+  state.kickscooters.find((kickscooter) => kickscooter.isSelect === true)!; // return value can't be undefined, because first item from db always have isSelect:true
 export const getAllKickscooters = (state: Store) => state.kickscooters;
 
+interface ToggleKickscooter {
+  id: string;
+  isSelect: boolean;
+}
+
 // action creators
-export const toggleSelect = (payload: ProductType) => ({
+export const toggleSelect = (payload: ToggleKickscooter) => ({
   type: "TOGGLE_KICKSCOOTER_SELECT",
   payload,
 });
@@ -21,13 +25,16 @@ export const loadKickscooters = (
   payload,
 });
 export const fetchKickscooters = () => {
-  return (dispatch) => {
+  return (dispatch: AppDispatch) => {
     fetch(`${API_URL}/kickscooters`)
       .then((res) => res.json())
       .then((kickscooters) => dispatch(loadKickscooters(kickscooters)));
   };
 };
-export const updateAmountKickscooterRequest = (kickscooter: ProductType) => {
+export const updateAmountKickscooterRequest = (kickscooter: {
+  id: string;
+  inStock: number;
+}) => {
   return () => {
     const options = {
       method: "PATCH",

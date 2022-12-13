@@ -1,9 +1,10 @@
 import styles from "./Gift.module.scss";
 import { getGiftAccessoryByKickscooter } from "../../../redux/accessoriesRedux";
 import { useSelector } from "react-redux";
+import { Store } from "../../../redux/initialState";
 
-const Gift = (props) => {
-  const gift = useSelector((state) =>
+const Gift: React.FC<{ gift: string }> = (props) => {
+  const gift = useSelector((state: Store) =>
     getGiftAccessoryByKickscooter(state, props.gift)
   );
 
