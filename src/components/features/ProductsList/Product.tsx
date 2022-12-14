@@ -13,7 +13,7 @@ export const Product: React.FC<KickscooterProduct> = (props) => {
   const selectedKickscooter = useSelector(getSelectedKickscooter);
 
   const toggle = () => {
-    if (selectedKickscooter.id != id) {
+    if (selectedKickscooter.id !== id) {
       dispatch(toggleSelect({ id, isSelect }));
     }
   };

@@ -3,7 +3,7 @@ import { getCartProducts } from "../../../redux/cartRedux";
 import styles from "./CartProducts.module.scss";
 import "../../../../node_modules/rc-input-number/assets/index.css";
 import { CartProduct } from "./CartProduct";
-import shortid from "shortid";
+import { nanoid } from "nanoid";
 import { CartItem } from "../../../types/CartItem";
 
 const CartProducts = () => {
@@ -22,7 +22,7 @@ const CartProducts = () => {
       ) : (
         cart.map((item) => (
           <CartProduct
-            key={shortid.generate()}
+            key={nanoid()}
             image={item.image}
             title={item.title}
             amount={item.amount}

@@ -2,7 +2,7 @@ import { Store } from "./initialState";
 import { ActionType } from "./store";
 
 /* selectors */
-export const getDevice = (isDesktop: Store) => isDesktop;
+export const isDesktop = (store: Store) => store.isDesktop;
 
 /* action creators */
 export const windowResize = (payload: boolean): DeviceType => ({
@@ -17,11 +17,14 @@ export interface DeviceType {
 }
 
 /* reducer */
-export default function reducer(statePart: Store, action: ActionType) {
+export default function reducer(
+  isDesktop: Store["isDesktop"] = true,
+  action: ActionType
+) {
   switch (action.type) {
     case "WINDOW_RESIZE":
       return action.payload;
     default:
-      return statePart;
+      return isDesktop;
   }
 }

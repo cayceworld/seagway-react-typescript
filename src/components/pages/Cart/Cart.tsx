@@ -6,7 +6,7 @@ import { addOrder } from "../../../redux/ordersRedux";
 import { useState } from "react";
 import { updateAmountKickscooterRequest } from "../../../redux/kickscooterRedux";
 import { updateAmountAccessoryRequest } from "../../../redux/accessoriesRedux";
-import shortid from "shortid";
+import { nanoid } from "nanoid";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -36,7 +36,7 @@ const Cart = () => {
         {
           items: cart,
           userInfo: [name, phone, address],
-          id: shortid.generate(),
+          id: nanoid(),
         },
         goToOrderPage
       )

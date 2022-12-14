@@ -26,7 +26,7 @@ const subreducers = {
   kickscooters: kickscooterReducer,
   accessories: accessoriesReducer,
   cart: cartReducer,
-  device: deviceReducer,
+  isDesktop: deviceReducer,
   orders: ordersReducer,
 };
 

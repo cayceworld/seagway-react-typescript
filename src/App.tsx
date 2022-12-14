@@ -33,12 +33,9 @@ function App() {
   }, [width]);
 
   const isDesktop = width >= 768;
-  console.log(isDesktop);
 
   const sizeChange = () => {
-    if (!isDesktop) {
-      dispatch(windowResize(isDesktop));
-    }
+    dispatch(windowResize(isDesktop));
   };
 
   return (

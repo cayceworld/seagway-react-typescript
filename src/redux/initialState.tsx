@@ -16,6 +16,8 @@ export interface Store {
   cart: CartItem[];
 
   isDesktop: boolean | null;
+
+  orders: Order[];
 }
 
 export interface Order {
