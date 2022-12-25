@@ -12,7 +12,7 @@ import {
   getCartProducts,
   addAmount,
 } from "../../../redux/cartRedux";
-import { getDevice } from "../../../redux/deviseRedux";
+import { isDesktop } from "../../../redux/deviceRedux";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import { CartItem } from "../../../types/CartItem";
@@ -21,8 +21,7 @@ const SelectedProduct = () => {
   const cart: Array<CartItem> = useSelector(getCartProducts);
   const kickscooter = useSelector(getSelectedKickscooter);
 
-  const device = useSelector(getDevice);
-  const isDesktop = device.isDesktop;
+  const device = useSelector(isDesktop);
 
   const dispatch = useDispatch();
 
@@ -45,7 +44,7 @@ const SelectedProduct = () => {
       addedItem.amount <= 9 &&
       addedItem.amount < kickscooter.inStock
     ) {
-      dispatch(addAmount({ id: kickscooter.id, amount: 1 }));
+      dispatch(addAmount(kickscooter.id, 1));
     }
   };
 
@@ -70,7 +69,7 @@ const SelectedProduct = () => {
                 <h2 className={styles.SelectedProduct__title}>
                   SEGWAY Ninebot {kickscooter.title}
                 </h2>
-                {!isDesktop && (
+                {!device && (
                   <div className={styles.SelectedProduct__gallery}>
                     <Gallery
                       gallery={kickscooter.gallery}
@@ -78,7 +77,7 @@ const SelectedProduct = () => {
                     />
                   </div>
                 )}
-                {!isDesktop && <Gift gift={kickscooter.gift} />}
+                {!device && <Gift gift={kickscooter.gift} />}
                 <div className={styles.SelectedProduct__deal}>
                   <div className={styles.SelectedProduct__extend}>
                     <p className={styles.SelectedProduct__subtitle}>
@@ -111,7 +110,7 @@ const SelectedProduct = () => {
                         ${kickscooter.price}
                       </p>
                     </div>
-                    {isDesktop && <Gift gift={kickscooter.gift} />}
+                    {device && <Gift gift={kickscooter.gift} />}
                   </div>
                   <div className={styles.SelectedProduct__buttons}>
                     <div>
@@ -200,7 +199,7 @@ const SelectedProduct = () => {
                   </div>
                 </div>
               </div>
-              {isDesktop && (
+              {device && (
                 <div className={styles.SelectedProduct__gallery}>
                   <Gallery
                     gallery={kickscooter.gallery}
@@ -209,7 +208,7 @@ const SelectedProduct = () => {
                 </div>
               )}
             </div>
-            <ProductInfo kickscooter={kickscooter} isDesktop={isDesktop} />
+            <ProductInfo kickscooter={kickscooter} isDesktop={device} />
             <PackingList kickscooter={kickscooter} />
           </div>
         </div>

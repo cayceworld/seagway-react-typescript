@@ -3,17 +3,11 @@ import { getCartProducts } from "../../../redux/cartRedux";
 import styles from "./CartProducts.module.scss";
 import "../../../../node_modules/rc-input-number/assets/index.css";
 import { CartProduct } from "./CartProduct";
-import shortid from "shortid";
-<<<<<<< HEAD
+import { nanoid } from "nanoid";
 import { CartItem } from "../../../types/CartItem";
 
 const CartProducts = () => {
   const cart: Array<CartItem> = useSelector(getCartProducts);
-=======
-
-const CartProducts = () => {
-  const cart = useSelector(getCartProducts);
->>>>>>> master
 
   let sum = 0;
 
@@ -28,7 +22,7 @@ const CartProducts = () => {
       ) : (
         cart.map((item) => (
           <CartProduct
-            key={shortid.generate()}
+            key={nanoid()}
             image={item.image}
             title={item.title}
             amount={item.amount}

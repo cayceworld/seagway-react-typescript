@@ -1,29 +1,27 @@
 import { API_URL } from "../config";
-
-//selectors
-export const getOrders = (state) => state.orders;
-
-// action name creator
-const createActionName = (actionName) => `app/orders/${actionName}`;
-
-// action types
-const ADD_TO_ORDERS = createActionName("ADD_TO_ORDERS");
-const LOAD_ORDERS = createActionName("LOAD_ORDERS");
+import { ActionType, AppDispatch } from "./store";
+import { Order } from "./initialState";
 
 // action creators
-export const addToOrders = (payload) => ({ type: ADD_TO_ORDERS, payload });
-export const loadOrders = (payload) => ({ type: LOAD_ORDERS, payload });
+export const addToOrders = (payload: Order): AddOrderAction => ({
+  type: "ADD_TO_ORDERS",
+  payload,
+});
+export const loadOrders = (payload: Order[]): LoadOrdersAction => ({
+  type: "LOAD_ORDERS",
+  payload,
+});
 
 export const fetchOrders = () => {
-  return (dispatch) => {
+  return (dispatch: AppDispatch) => {
     fetch(`${API_URL}/orders`)
       .then((res) => res.json())
       .then((orders) => dispatch(loadOrders(orders)));
   };
 };
+type CallbackFunction = () => void;
 
-export const addOrder = (order, goToOrderPage) => {
-  console.log("order", order);
+export const addOrder = (order: Order, goToOrderPage: CallbackFunction) => {
   return () => {
     const options = {
       method: "POST",
@@ -32,17 +30,33 @@ export const addOrder = (order, goToOrderPage) => {
       },
       body: JSON.stringify(order),
     };
-    fetch(`${API_URL}/orders/`, options).then(goToOrderPage());
+    fetch(`${API_URL}/orders/`, options).then(goToOrderPage);
   };
 };
 
+//action types
+
+interface AddOrderAction {
+  type: "ADD_TO_ORDERS";
+  payload: Order;
+}
+
+interface LoadOrdersAction {
+  type: "LOAD_ORDERS";
+  payload: Order[];
+}
+
+export type OrdersReducerAction = AddOrderAction | LoadOrdersAction;
+
 // reducer
-const ordersReducer = (statePart = [], action) => {
+const ordersReducer = (
+  statePart: Order[] = [],
+  action: ActionType
+): Order[] => {
   switch (action.type) {
-    case ADD_TO_ORDERS:
+    case "ADD_TO_ORDERS":
       return [...statePart, { ...action.payload }];
-    case LOAD_ORDERS:
-      console.log("db.orders:", action.payload);
+    case "LOAD_ORDERS":
       return [...action.payload];
     default:
       return statePart;

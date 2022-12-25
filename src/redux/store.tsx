@@ -1,29 +1,41 @@
-import { createStore, combineReducers, compose, applyMiddleware } from "redux";
+import {
+  legacy_createStore as createStore,
+  combineReducers,
+  compose,
+  applyMiddleware,
+} from "redux";
 import thunk from "redux-thunk";
 import initialState from "./initialState";
-import kickscooterReducer from "./kickscooterRedux";
-import accessoriesReducer from "./accessoriesRedux";
-import cartReducer from "./cartRedux";
-import deviceReducer from "./deviseRedux";
-import ordersReducer from "./ordersRedux";
+import kickscooterReducer, {
+  KickscooterReducerAction,
+} from "./kickscooterRedux";
+import accessoriesReducer, { LoadAccessoriesAction } from "./accessoriesRedux";
+import cartReducer, { CartReducerAction } from "./cartRedux";
+import deviceReducer from "./deviceRedux";
+import ordersReducer, { OrdersReducerAction } from "./ordersRedux";
+import { DeviceType } from "./deviceRedux";
+
+export type ActionType =
+  | LoadAccessoriesAction
+  | CartReducerAction
+  | KickscooterReducerAction
+  | DeviceType
+  | OrdersReducerAction;
 
 const subreducers = {
   kickscooters: kickscooterReducer,
   accessories: accessoriesReducer,
   cart: cartReducer,
-  device: deviceReducer,
+  isDesktop: deviceReducer,
   orders: ordersReducer,
 };
 
 const reducer = combineReducers(subreducers);
 
-<<<<<<< HEAD
 declare global {
-  var __REDUX_DEVTOOLS_EXTENSION__: any
+  var __REDUX_DEVTOOLS_EXTENSION__: any;
 }
 
-=======
->>>>>>> master
 const store = createStore(
   reducer,
   initialState,
@@ -32,8 +44,9 @@ const store = createStore(
     applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__
       ? window.__REDUX_DEVTOOLS_EXTENSION__()
-      : (f) => f
+      : (f: any) => f
   )
 );
 
 export default store;
+export type AppDispatch = typeof store.dispatch;

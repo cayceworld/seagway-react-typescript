@@ -1,9 +1,12 @@
 import styles from "./PackingList.module.scss";
 import clsx from "clsx";
+import { Kickscooter } from "../../../redux/initialState";
 
-const PackingList = (props) => {
-  const kickscooter = props.kickscooter;
+interface PackingListProps {
+  kickscooter: Kickscooter;
+}
 
+const PackingList: React.FC<PackingListProps> = ({ kickscooter }) => {
   return (
     <div className={styles.PackingList}>
       {!kickscooter.youtubeVideo && (

@@ -1,35 +1,40 @@
 import { API_URL } from "../config";
+import { Store } from "./initialState";
+import { CartItem } from "../types/CartItem";
+import { ActionType, AppDispatch } from "./store";
 
 //selectors
-export const getSelectedKickscooter = (state) =>
-  state.kickscooters.find((kickscooter) => kickscooter.isSelect === true);
-export const getAllKickscooters = (state) => state.kickscooters;
+export const getSelectedKickscooter = (state: Store) =>
+  state.kickscooters.find((kickscooter) => kickscooter.isSelect === true)!; // return value can't be undefined, because first item from db always have isSelect:true
+export const getAllKickscooters = (state: Store) => state.kickscooters;
 
-// action name creator
-const createActionName = (actionName) => `app/kickscooters/${actionName}`;
-
-// action types
-const TOGGLE_KICKSCOOTER_SELECT = createActionName("TOGGLE_KICKSCOOTER_SELECT");
-const LOAD_KICKSCOOTERS = createActionName("LOAD_KICKSCOOTERS");
+interface ToggleKickscooter {
+  id: string;
+  isSelect: boolean;
+}
 
 // action creators
-export const toggleSelect = (payload) => ({
-  type: TOGGLE_KICKSCOOTER_SELECT,
+export const toggleSelect = (payload: ToggleKickscooter) => ({
+  type: "TOGGLE_KICKSCOOTER_SELECT",
   payload,
 });
-
-export const loadKickscooters = (payload) => ({
-  type: LOAD_KICKSCOOTERS,
+export const loadKickscooters = (
+  payload: Store["kickscooters"]
+): LoadKickscooterAction => ({
+  type: "LOAD_KICKSCOOTERS",
   payload,
 });
 export const fetchKickscooters = () => {
-  return (dispatch) => {
+  return (dispatch: AppDispatch) => {
     fetch(`${API_URL}/kickscooters`)
       .then((res) => res.json())
       .then((kickscooters) => dispatch(loadKickscooters(kickscooters)));
   };
 };
-export const updateAmountKickscooterRequest = (kickscooter) => {
+export const updateAmountKickscooterRequest = (kickscooter: {
+  id: string;
+  inStock: number;
+}) => {
   return () => {
     const options = {
       method: "PATCH",
@@ -44,18 +49,34 @@ export const updateAmountKickscooterRequest = (kickscooter) => {
   };
 };
 
+// action types
+interface ToggleKickscooterAction {
+  type: "TOGGLE_KICKSCOOTER_SELECT";
+  payload: CartItem;
+}
+
+interface LoadKickscooterAction {
+  type: "LOAD_KICKSCOOTERS";
+  payload: Store["kickscooters"];
+}
+
+export type KickscooterReducerAction =
+  | ToggleKickscooterAction
+  | LoadKickscooterAction;
+
 // reducer
-const kickscooterReducer = (statePart = [], action) => {
+const kickscooterReducer = (
+  statePart: Store["kickscooters"] = [],
+  action: ActionType
+) => {
   switch (action.type) {
-    case TOGGLE_KICKSCOOTER_SELECT:
-      console.log(statePart);
+    case "TOGGLE_KICKSCOOTER_SELECT":
       return statePart.map((kickscooter) =>
         kickscooter.id === action.payload.id
           ? { ...kickscooter, isSelect: true }
           : { ...kickscooter, isSelect: false }
       );
-    case LOAD_KICKSCOOTERS:
-      console.log("db.kickscooters:", action.payload);
+    case "LOAD_KICKSCOOTERS":
       return [...action.payload];
     default:
       return statePart;

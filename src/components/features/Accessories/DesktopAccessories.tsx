@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux";
 import { getAllAccessories } from "../../../redux/accessoriesRedux";
-import { ProductType } from "../../../types/ProductType";
 import styles from "./AccessoriesList.module.scss";
 import { Accessory } from "./Accessory";
 
 const DesktopAccessories = () => {
-  const accessories: Array<ProductType> = useSelector(getAllAccessories);
+  const accessories = useSelector(getAllAccessories);
 
   return (
     <div className={styles.DesktopAccessories}>

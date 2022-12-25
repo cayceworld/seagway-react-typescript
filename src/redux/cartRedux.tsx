@@ -1,43 +1,88 @@
+import { Store } from "./initialState";
+import { CartItem } from "../types/CartItem";
+import { ActionType } from "./store";
+
 //selectors
-export const getCartProducts = (state) => state.cart;
-
-// action name creator
-const createActionName = (actionName) => `app/accessories/${actionName}`;
-
-// action types
-const ADD_TO_CART = createActionName("ADD_TO_CART");
-const ADD_AMOUNT = createActionName("ADD_AMOUNT");
-const REMOVE_AMOUNT = createActionName("REMOVE_AMOUNT");
-const REMOVE_ITEM = createActionName("REMOVE_ITEM");
-const CLEAR_CART = createActionName("CLEAR_CART");
+export const getCartProducts = (state: Store) => state.cart;
 
 // action creators
-export const addToCart = (payload) => ({ type: ADD_TO_CART, payload });
-export const addAmount = (payload) => ({ type: ADD_AMOUNT, payload });
-export const removeAmount = (payload) => ({ type: REMOVE_AMOUNT, payload });
-export const removeItem = (payload) => ({ type: REMOVE_ITEM, payload });
-export const clearCart = (payload) => ({ type: CLEAR_CART, payload });
+export const addToCart = (payload: CartItem): AddItemAction => ({
+  type: "ADD_TO_CART",
+  payload,
+});
+export const addAmount = (id: string, amount: number): AddItemAmountAction => ({
+  type: "ADD_AMOUNT",
+  id,
+  amount,
+});
+export const removeAmount = (
+  id: string,
+  amount: number
+): RemoveAmountAction => ({
+  type: "REMOVE_AMOUNT",
+  id,
+  amount,
+});
+export const removeItem = (id: string): RemoveItemAction => ({
+  type: "REMOVE_ITEM",
+  id,
+});
+export const clearCart = (): ClearCartAction => ({ type: "CLEAR_CART" });
+
+//action types
+interface AddItemAction {
+  type: "ADD_TO_CART";
+  payload: CartItem;
+}
+
+interface AddItemAmountAction {
+  type: "ADD_AMOUNT";
+  id: string;
+  amount: number;
+}
+
+interface RemoveItemAction {
+  type: "REMOVE_ITEM";
+  id: string;
+}
+
+interface ClearCartAction {
+  type: "CLEAR_CART";
+}
+
+interface RemoveAmountAction {
+  type: "REMOVE_AMOUNT";
+  id: string;
+  amount: number;
+}
+
+export type CartReducerAction =
+  | AddItemAction
+  | AddItemAmountAction
+  | RemoveItemAction
+  | ClearCartAction
+  | RemoveAmountAction;
 
 // reducer
-const cartReducer = (statePart = [], action) => {
+const cartReducer = (statePart: Store["cart"] = [], action: ActionType) => {
   switch (action.type) {
-    case ADD_TO_CART:
+    case "ADD_TO_CART":
       return [...statePart, { ...action.payload }];
-    case ADD_AMOUNT:
+    case "ADD_AMOUNT":
       return statePart.map((item) =>
-        item.id == action.payload.id
-          ? { ...item, amount: item.amount + action.payload.amount }
-          : { ...item }
+        item.id === action.id
+          ? { ...item, amount: item.amount + action.amount }
+          : item
       );
-    case REMOVE_AMOUNT:
+    case "REMOVE_AMOUNT":
       return statePart.map((item) =>
-        item.id == action.payload.id
-          ? { ...item, amount: item.amount - action.payload.amount }
-          : { ...item }
+        item.id === action.id
+          ? { ...item, amount: item.amount - action.amount }
+          : item
       );
-    case REMOVE_ITEM:
-      return statePart.filter((item) => item.id !== action.payload.id);
-    case CLEAR_CART:
+    case "REMOVE_ITEM":
+      return statePart.filter((item) => item.id !== action.id);
+    case "CLEAR_CART":
       return [];
     default:
       return statePart;

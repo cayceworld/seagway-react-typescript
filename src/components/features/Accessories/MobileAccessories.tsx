@@ -3,10 +3,9 @@ import { useSelector } from "react-redux";
 import { getAllAccessories } from "../../../redux/accessoriesRedux";
 import { Accessory } from "./Accessory";
 import styles from "./AccessoriesList.module.scss";
-import { ProductType } from "../../../types/ProductType";
 
 const MobileAccessories = () => {
-  const accessories: Array<ProductType> = useSelector(getAllAccessories);
+  const accessories = useSelector(getAllAccessories);
 
   return (
     <Swiper

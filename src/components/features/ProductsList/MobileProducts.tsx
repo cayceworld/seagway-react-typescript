@@ -6,10 +6,9 @@ import { Navigation } from "swiper";
 import "swiper/css/navigation";
 import "swiper/css";
 import { Product } from "./Product";
-import { ProductType } from "../../../types/ProductType";
 
 const MobileProducts = () => {
-  const kickscooters: Array<ProductType> = useSelector(getAllKickscooters);
+  const kickscooters = useSelector(getAllKickscooters);
 
   return (
     <div className={styles.MobileProducts}>
@@ -26,6 +25,8 @@ const MobileProducts = () => {
               title={kickscooter.title}
               image={kickscooter.image}
               isSelect={kickscooter.isSelect}
+              price={kickscooter.price}
+              inStock={kickscooter.inStock}
             />
           </SwiperSlide>
         ))}
